@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('fetchthesourcecode'){
             steps {
-                git branch: 'main', credentialsId: 'git_hub', url: 'git@github.com:jayantprojects/cicd.git'
+                git branch: 'master', credentialsId: 'git_hub', url: 'git@github.com:jayantprojects/cicd.git'
             }
         } 
         stage('Build Docker Image') {
