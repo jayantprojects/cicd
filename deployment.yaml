@@ -1,0 +1,39 @@
+apiVersion: v1 
+kind: Namespace 
+metadata:
+  name: apache2namespace
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache2-deployment
+  namespace: apache2namespace
+spec:
+  replicas: 2  # Number of replicas/pods
+  selector:
+    matchLabels:
+      app: apache2
+  template:
+    metadata:
+      labels:
+        app: apache2
+    spec:
+      containers:
+      - name: apache2-container
+        image: your_dockerhub_username/apache2_image:latest  # Replace with your image
+        ports:
+        - containerPort: 80  # Apache2 runs on port 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache2-service
+  namespace: apache2namespace
+spec:
+  selector:
+    app: apache2
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+  type: LoadBalancer  # Exposes the service as a LoadBalancer
