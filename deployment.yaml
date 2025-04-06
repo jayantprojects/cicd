@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: apache2-container
-        image: jayantborate14/cicdlab:null
+        image: jayantborate14/cicdlab:7
         ports:
         - containerPort: 80  # Apache2 runs on port 80
 ---
